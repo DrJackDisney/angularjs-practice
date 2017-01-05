@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html ng-app="myApp">
+
+
+
+ <head>
+
+  　<!-- 見た目用にBootstrapを使う -->
+
+  　<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+  　<!-- AngularJS -->
+  　<script src="js/angular.min.js"></script>
+
+	<script src="js/app.js"></script>
+
+ </head>
+
+
+<body class="container">
+ 
+	<!-- ng-controllerで紐付け -->
+　　<div ng-controller="AppController">
+ 
+　　　<div>
+ 
+　　　　<h1>登録フォーム</h1>
+ 
+　　　　<form ng-submit="submit()">
+ 
+　　　　　<div class="form-group">
+ 
+　　　　　　<label for="username">ユーザー名</label>
+
+			<!-- INPUTに$scope.usernameを紐付ける -->
+　　　　　　<input type="text" class="form-control" id="username" placeholder="twitterのユーザー名を入力" ng-model="username">
+　
+　　　　　</div>
+ 
+　　　　　　<button type="submit" class="btn btn-primary">登録</button>
+ 
+　　　　</form>
+ 
+　　　</div>
+ 
+　　　　<hr>
+ 
+　　　<div>
+
+
+		<!-- ユーザー一覧表示エリア -->
+　　　　<h1>ユーザー一覧</h1>
+ 		<span ng-if="users.length === 0">ユーザーが一人も登録されていません</span>
+　　　　<ul>
+ 
+		  <!-- 繰り返したいタグに対してng-repeatを使う -->
+　　　　　<li style="padding: 5px" ng-repeat="user in users">
+
+			<div>
+　　　　　　	<!-- ng-repeat内のuserをタグで囲まれた範囲内で使うことができます -->
+				<a href="{{user.url}}" target="_blank">{{user.username}}</a>
+				<button type="button" class="btn btn-xs btn-danger" ng-click="deleteUser($idx)">x</button>
+
+			</div>
+ 
+　　　　　</li>
+ 
+　　　　</ul>
+ 
+　　　</div>
+ 
+　　</div>
+
+ </body>
+
+
+
+</html>
